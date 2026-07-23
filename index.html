@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rastreamento de Pedidos</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 9.4 7.5 4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.27 6.96 8.73 5.05 8.73-5.05"/><path d="M12 22.08V12"/></svg>
+    </div>
+    <div>
+      <h1>Rastreamento de Pedidos</h1>
+      <span>Acompanhe sua encomenda em tempo real</span>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <form class="search-box" id="search-form" autocomplete="off">
+    <input
+      type="text"
+      id="search-input"
+      placeholder="Digite o código de rastreio"
+      aria-label="Código de rastreio"
+    >
+    <button type="submit" id="search-btn" aria-label="Buscar pedido">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    </button>
+  </form>
+  <p class="search-hint">Ex: AO-BR-AG2268-Z4H ou apenas 2268</p>
+
+  <!-- Loading state -->
+  <div class="state-box hidden" id="state-loading">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation: spin 0.9s linear infinite;"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+    <h3>Buscando pedido...</h3>
+  </div>
+
+  <!-- Empty / not found state -->
+  <div class="state-box hidden" id="state-empty">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73z"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>
+    <h3>Pedido não encontrado</h3>
+    <p>Confira se o código de rastreio foi digitado corretamente e tente novamente.</p>
+  </div>
+
+  <!-- Initial state -->
+  <div class="state-box" id="state-initial">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <h3>Digite um código para começar</h3>
+    <p>Informe o código de rastreio do seu pedido no campo acima.</p>
+  </div>
+
+  <!-- Results -->
+  <div id="result-container" class="hidden">
+
+    <!-- Card 1: Header -->
+    <div class="card">
+      <div class="brand-row">
+        <span class="brand-name" id="brand-name">TRACKFAST LOGÍSTICA</span>
+        <span class="status-tag"><span class="dot"></span><span id="status-current">—</span></span>
+      </div>
+      <div class="tracking-code" id="tracking-code">—</div>
+      <div class="info-box">
+        <div class="info-row">
+          <span class="label">Destinatário</span>
+          <span class="value" id="cliente-nome">—</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Destino</span>
+          <span class="value" id="cliente-destino">—</span>
+        </div>
+      </div>
+      <button class="btn-pdf" id="btn-pdf">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Baixar Resumo em PDF
+      </button>
+    </div>
+
+    <!-- Card 2: Products -->
+    <div class="card">
+      <div class="card-title">Itens do pedido</div>
+      <div id="produtos-list"></div>
+      <div class="totals">
+        <div class="info-row">
+          <span class="label">Frete + Seguro</span>
+          <span class="value" id="frete-seguro">—</span>
+        </div>
+        <div class="info-row total-final">
+          <span class="label">Valor Total</span>
+          <span class="value" id="valor-total">—</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Timeline -->
+    <div class="card">
+      <div class="card-title">Linha do tempo</div>
+      <div class="timeline" id="timeline-list"></div>
+    </div>
+
+    <!-- Card 4: Address -->
+    <div class="card">
+      <div class="card-title">Endereço de entrega</div>
+      <div class="address-block">
+        <div class="address-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="address-text" id="endereco-completo">—</div>
+      </div>
+    </div>
+
+    <!-- Card 5: Support -->
+    <div class="card support-card">
+      <p>Precisa de ajuda com o seu pedido?</p>
+      <a href="mailto:pricestor@gmail.com" class="support-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Falar com o Suporte
+      </a>
+    </div>
+
+  </div>
+
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

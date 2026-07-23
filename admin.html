@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Administrativo — Pedidos</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="admin-wrapper">
+
+  <div class="topbar">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+    </div>
+    <div>
+      <h1>Painel Administrativo</h1>
+      <span>Cadastre e atualize pedidos</span>
+    </div>
+  </div>
+
+  <div class="admin-tabs">
+    <button type="button" id="tab-novo" class="active">Novo Pedido</button>
+    <button type="button" id="tab-buscar">Buscar / Atualizar</button>
+  </div>
+
+  <!-- Search existing order (to load into the form for editing) -->
+  <div class="card" id="panel-buscar" style="display:none;">
+    <div class="card-title">Carregar pedido existente</div>
+    <div class="form-group">
+      <label for="buscar-codigo">Código do pedido</label>
+      <input type="text" id="buscar-codigo" placeholder="Ex: AO-BR-AG2268-Z4H">
+    </div>
+    <button class="btn-primary" id="btn-buscar" type="button">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      Buscar Pedido
+    </button>
+    <div class="admin-feedback" id="buscar-feedback"></div>
+  </div>
+
+  <!-- Form -->
+  <div class="card">
+    <div class="card-title" id="form-title">Dados do pedido</div>
+
+    <form id="pedido-form" autocomplete="off">
+
+      <div class="form-group">
+        <label for="f-codigo">Código do pedido <span class="field-hint">(gerado automaticamente)</span></label>
+        <input type="text" id="f-codigo" readonly required>
+      </div>
+
+      <div class="form-group">
+        <label for="f-nome">Nome do cliente</label>
+        <input type="text" id="f-nome" placeholder="Ex: Maria Oliveira" required>
+      </div>
+
+      <div class="form-group">
+        <label for="f-cidade-uf">Cidade / UF (destino)</label>
+        <input type="text" id="f-cidade-uf" placeholder="Ex: Belo Horizonte - MG" required>
+      </div>
+
+      <div class="form-group">
+        <label for="f-produtos">Produtos <span class="field-hint">(um por linha, formato: Nome - valor)</span></label>
+        <textarea id="f-produtos" placeholder="Ex:&#10;Camiseta Estampada - 79.90&#10;Tênis Esportivo - 249.90" required></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="f-frete">Valor do frete + seguro (R$)</label>
+          <input type="number" step="0.01" min="0" id="f-frete" placeholder="0,00" required>
+        </div>
+        <div class="form-group">
+          <label for="f-total">Valor total (R$)</label>
+          <input type="number" step="0.01" min="0" id="f-total" placeholder="0,00" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="f-endereco">Endereço completo</label>
+        <textarea id="f-endereco" placeholder="Rua, número, bairro, cidade - UF, CEP" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="f-status">Status atual</label>
+        <select id="f-status" required>
+          <option value="Confirmado">Confirmado</option>
+          <option value="Em Separação">Em Separação</option>
+          <option value="Em Trânsito">Em Trânsito</option>
+          <option value="Entregue">Entregue</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="f-localizacao">Localização deste status <span class="field-hint">(aparece na linha do tempo)</span></label>
+        <input type="text" id="f-localizacao" placeholder="Ex: Centro de Distribuição - Campinas, SP">
+      </div>
+
+      <button type="submit" class="btn-primary" id="btn-salvar">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        Salvar Pedido
+      </button>
+
+      <div class="admin-feedback" id="form-feedback"></div>
+    </form>
+  </div>
+
+  <!-- Mensagem pronta para copiar e enviar ao cliente -->
+  <div class="card" id="mensagem-card" style="display:none;">
+    <div class="card-title">Mensagem para o cliente</div>
+    <pre class="message-box" id="mensagem-texto"></pre>
+    <button type="button" class="btn-primary" id="btn-copiar-mensagem">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Copiar Mensagem
+    </button>
+  </div>
+
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
