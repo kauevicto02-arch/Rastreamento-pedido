@@ -75,6 +75,22 @@ async function gerarCodigoUnico() {
   return `${gerarCodigoAleatorio()}-${Date.now().toString().slice(-4)}`;
 }
 
+// Formata uma data "YYYY-MM-DD" (input type=date) para "DD/MM/AAAA"
+function formatDateSimples(isoDate) {
+  if (!isoDate) return "A confirmar";
+  const [ano, mes, dia] = isoDate.split("-");
+  if (!ano || !mes || !dia) return isoDate;
+  return `${dia}/${mes}/${ano}`;
+}
+
+// Mapeia o status interno para o texto usado na mensagem de rastreio
+const STATUS_LABEL_MSG = {
+  "Confirmado": "Pedido Criado",
+  "Em Separação": "Em Separação",
+  "Em Trânsito": "Em Trânsito",
+  "Entregue": "Entregue"
+};
+
 /* =========================================================
    PÁGINA DO CLIENTE (index.html)
    ========================================================= */
@@ -207,6 +223,13 @@ function initClientPage() {
       alert("Resumo em PDF gerado com sucesso! (funcionalidade simulada)");
     }, 900);
   });
+
+  // Se a página foi aberta com um link do tipo ?codigo=XXXX, já busca automaticamente
+  const codigoNaUrl = new URLSearchParams(window.location.search).get("codigo");
+  if (codigoNaUrl) {
+    input.value = codigoNaUrl;
+    buscarPedido(codigoNaUrl);
+  }
 }
 
 /* =========================================================
@@ -232,6 +255,7 @@ function initAdminPage() {
   const fEndereco = document.getElementById("f-endereco");
   const fStatus = document.getElementById("f-status");
   const fLocalizacao = document.getElementById("f-localizacao");
+  const fPrevisao = document.getElementById("f-previsao");
 
   let historicoAtual = []; // histórico do pedido carregado, se houver
 
@@ -241,6 +265,7 @@ function initAdminPage() {
     historicoAtual = [];
     formTitle.textContent = "Dados do pedido";
     document.getElementById("mensagem-card").style.display = "none";
+    document.getElementById("mensagem-rastreio-card").style.display = "none";
     fCodigo.value = "Gerando código...";
     fCodigo.value = await gerarCodigoUnico();
   }
@@ -290,6 +315,7 @@ function initAdminPage() {
 
   function preencherFormulario(data) {
     document.getElementById("mensagem-card").style.display = "none";
+    document.getElementById("mensagem-rastreio-card").style.display = "none";
     fCodigo.value = data.codigo || "";
     fNome.value = data.clienteNome || "";
     fCidadeUf.value = data.destino || "";
@@ -301,6 +327,7 @@ function initAdminPage() {
     fEndereco.value = data.enderecoCompleto || "";
     fStatus.value = data.status || "Confirmado";
     fLocalizacao.value = "";
+    fPrevisao.value = data.previsaoEntrega || "";
   }
 
   // ---- Parse do textarea de produtos ----
@@ -363,6 +390,7 @@ function initAdminPage() {
         valorTotal: parseFloat(fTotal.value) || 0,
         enderecoCompleto: fEndereco.value.trim(),
         status: novoStatus,
+        previsaoEntrega: fPrevisao.value || "",
         historico: historicoAtualizado,
         atualizadoEm: new Date().toISOString(),
         criadoEm: historicoAtual.length ? undefined : new Date().toISOString()
@@ -378,6 +406,7 @@ function initAdminPage() {
       historicoAtual = historicoAtualizado;
       showFeedback(feedback, `Pedido ${codigo} salvo com sucesso!`, "success");
       exibirMensagemCliente(pedidoData);
+      exibirMensagemRastreio(pedidoData);
     } catch (err) {
       console.error("Erro ao salvar pedido:", err);
       showFeedback(feedback, "Erro ao salvar o pedido. Verifique os dados e tente novamente.", "error");
@@ -413,18 +442,39 @@ function initAdminPage() {
     const mensagemTexto = document.getElementById("mensagem-texto");
     mensagemTexto.textContent = montarMensagemCliente(pedidoData);
     mensagemCard.style.display = "block";
-    mensagemCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
-  document.getElementById("btn-copiar-mensagem").addEventListener("click", async () => {
-    const btnCopiar = document.getElementById("btn-copiar-mensagem");
-    const texto = document.getElementById("mensagem-texto").textContent;
-    const originalHTML = btnCopiar.innerHTML;
+  // ---- Monta a mensagem de notificação com o link de rastreio ----
+  function montarMensagemRastreio(pedidoData) {
+    const linkRastreio = `${window.location.origin}/?codigo=${pedidoData.codigo}`;
+    const situacao = STATUS_LABEL_MSG[pedidoData.status] || pedidoData.status;
 
+    return [
+      `Olá ${pedidoData.clienteNome}! 📦`,
+      `Seu pedido está sendo rastreado.`,
+      `📋 Código de Rastreio: ${pedidoData.codigo}`,
+      `📍 Situação: ${situacao}`,
+      `🏙️ Destino: ${pedidoData.destino}`,
+      `📅 Previsão de Entrega: ${formatDateSimples(pedidoData.previsaoEntrega)}`,
+      `Acompanhe seu pedido em tempo real pelo link:`,
+      linkRastreio,
+      `Ver Rastro - Sua entrega em boas mãos 🚚`
+    ].join("\n");
+  }
+
+  function exibirMensagemRastreio(pedidoData) {
+    const card = document.getElementById("mensagem-rastreio-card");
+    const texto = document.getElementById("mensagem-rastreio-texto");
+    texto.textContent = montarMensagemRastreio(pedidoData);
+    card.style.display = "block";
+    card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  // ---- Cópia para a área de transferência (com fallback) ----
+  async function copiarTexto(texto) {
     try {
       await navigator.clipboard.writeText(texto);
     } catch (err) {
-      // Fallback para navegadores sem suporte à Clipboard API
       const textarea = document.createElement("textarea");
       textarea.value = texto;
       textarea.style.position = "fixed";
@@ -434,11 +484,22 @@ function initAdminPage() {
       document.execCommand("copy");
       document.body.removeChild(textarea);
     }
+  }
 
+  document.getElementById("btn-copiar-mensagem").addEventListener("click", async () => {
+    const btnCopiar = document.getElementById("btn-copiar-mensagem");
+    const originalHTML = btnCopiar.innerHTML;
+    await copiarTexto(document.getElementById("mensagem-texto").textContent);
     btnCopiar.textContent = "Mensagem copiada!";
-    setTimeout(() => {
-      btnCopiar.innerHTML = originalHTML;
-    }, 1800);
+    setTimeout(() => { btnCopiar.innerHTML = originalHTML; }, 1800);
+  });
+
+  document.getElementById("btn-copiar-mensagem-rastreio").addEventListener("click", async () => {
+    const btnCopiar = document.getElementById("btn-copiar-mensagem-rastreio");
+    const originalHTML = btnCopiar.innerHTML;
+    await copiarTexto(document.getElementById("mensagem-rastreio-texto").textContent);
+    btnCopiar.textContent = "Mensagem copiada!";
+    setTimeout(() => { btnCopiar.innerHTML = originalHTML; }, 1800);
   });
 
   function showFeedback(el, message, type) {
