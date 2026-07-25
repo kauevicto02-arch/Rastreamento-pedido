@@ -101,35 +101,33 @@
     margin-bottom: 22px;
   }
 
-  .brand-icon {
-    width: 82px;
-    height: 82px;
+ .brand-icon {
+  width: 125px;
+  height: auto;
 
-    margin: 0 auto 16px;
+  margin: 0 auto 10px;
 
-    border-radius: 24px;
+  background: transparent;
 
-    background: linear-gradient(
-      145deg,
-      #27d566,
-      #18b653
-    );
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  overflow: visible;
+  box-shadow: none;
+}
+ .brand-icon img {
+  width: 100%;
+  height: auto;
 
-    box-shadow:
-      0 12px 30px rgba(34, 197, 94, 0.25);
+  display: block;
 
-    position: relative;
-  }
+  object-fit: contain;
+  object-position: center;
 
-  .brand-icon svg {
-    width: 45px;
-    height: 45px;
-    fill: white;
-  }
+  padding: 8px;
+  border-radius: 0;
+}
 
   .brand-name {
     font-size: 14px;
@@ -219,111 +217,116 @@
   /* BENEFÍCIOS */
 
   .benefits {
-    display: grid;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 24px;
+  text-align: left;
+}
 
-    gap: 14px;
+.benefit {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 16px;
+  background: #fbfcfd;
+  border: 1px solid #edf0f3;
+  border-radius: 16px;
+}
 
-    margin-bottom: 28px;
+.check {
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  border-radius: 50%;
+  background: var(--green-soft);
+  color: var(--green-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 900;
+}
 
-    text-align: left;
-  }
+.benefit p {
+  margin: 0;
+  color: #344054;
+  font-size: 14px;
+  line-height: 1.45;
+  font-weight: 600;
+}
+.alert-box{
 
-  .benefit {
-    display: flex;
+    margin:22px 0 18px;
 
-    align-items: flex-start;
+    padding:14px 16px;
 
-    gap: 12px;
+    background:#FFF7E6;
 
-    padding: 14px;
+    border:1px solid #FFD591;
 
-    background: #fbfcfd;
+    border-radius:14px;
 
-    border: 1px solid #edf0f3;
+    color:#B45309;
 
-    border-radius: 16px;
-  }
+    font-size:14px;
 
-  .check {
-    width: 24px;
-    height: 24px;
+    font-weight:700;
 
-    min-width: 24px;
+    line-height:1.5;
 
-    border-radius: 50%;
+    text-align:center;
 
-    background: var(--green-soft);
-
-    color: var(--green-dark);
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    font-size: 14px;
-
-    font-weight: 900;
-  }
-
-  .benefit p {
-    color: #344054;
-
-    font-size: 14px;
-
-    line-height: 1.5;
-
-    font-weight: 600;
-  }
-
+}
   /* CTA */
 
-  .cta-wrap {
-    margin-top: 4px;
-  }
+ .cta-wrap {
+  width: 100%;
+  margin-top: 4px;
+}
 
   .btn {
-    width: 100%;
+  width: 100%;
+  min-height: 64px;
 
-    display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    align-items: center;
+  gap: 11px;
 
-    justify-content: center;
+  text-decoration: none;
+  text-transform: uppercase;
 
-    gap: 11px;
+  background: linear-gradient(
+    135deg,
+    #25d366,
+    #1fbe59
+  );
 
-    text-decoration: none;
+  color: white;
 
-    background: linear-gradient(
-      135deg,
-      #25d366,
-      #1fbe59
-    );
+  border-radius: 17px;
 
-    color: white;
+  padding: 19px 18px;
 
-    border-radius: 17px;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
 
-    padding: 19px 18px;
+  box-shadow:
+    0 14px 28px rgba(34, 197, 94, 0.26),
+    0 0 0 0 rgba(34, 197, 94, 0.18);
 
-    font-size: 16px;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    filter 0.18s ease;
 
-    font-weight: 800;
-
-    letter-spacing: 0.01em;
-
-    box-shadow:
-      0 14px 28px rgba(34, 197, 94, 0.26),
-      0 0 0 0 rgba(34, 197, 94, 0.18);
-
-    transition:
-      transform 0.18s ease,
-      box-shadow 0.18s ease,
-      filter 0.18s ease;
-
-    animation: buttonGlow 2.7s ease-in-out infinite;
-  }
+  animation: buttonGlow 2.7s ease-in-out infinite;
+}
 
   .btn:hover {
     transform: translateY(-2px);
@@ -346,25 +349,37 @@
 
   /* TRUST */
 
-  .trust {
-    display: flex;
+  .trust{
 
-    align-items: center;
+    margin-top:18px;
 
-    justify-content: center;
+    display:flex;
 
-    gap: 7px;
+    flex-wrap:wrap;
 
-    margin-top: 17px;
+    justify-content:center;
 
-    color: var(--muted);
+    gap:10px;
 
-    font-size: 13px;
-  }
+    color:#4b5563;
 
-  .trust-icon {
-    font-size: 14px;
-  }
+    font-size:14px;
+
+    font-weight:600;
+
+    line-height:1.5;
+
+}
+
+.trust span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
+}
 
   /* DIVISOR */
 
@@ -432,9 +447,9 @@
     }
 
     .card {
-      border-radius: 24px;
-      padding: 32px 21px 26px;
-    }
+  border-radius: 24px;
+  padding: 42px 21px 26px;
+}
 
     .brand-icon {
       width: 72px;
@@ -502,14 +517,21 @@
       <div class="brand-icon">
 
         <!-- WhatsApp SVG -->
-        <svg viewBox="0 0 32 32" aria-hidden="true">
-          <path d="M16.04 4.003c-6.615 0-11.997 5.382-11.997 11.998 0 2.112.551 4.173 1.596 5.987L3.94 28.19l6.347-1.665a11.94 11.94 0 0 0 5.75 1.464h.005c6.613 0 12-5.383 12-12 0-3.205-1.25-6.218-3.516-8.484A11.92 11.92 0 0 0 16.04 4.003Zm0 21.96h-.004a9.91 9.91 0 0 1-5.05-1.381l-.363-.215-3.767.988 1.005-3.672-.236-.377A9.94 9.94 0 0 1 6.07 16c0-5.5 4.474-9.974 9.973-9.974a9.91 9.91 0 0 1 7.054 2.922A9.91 9.91 0 0 1 26.016 16c-.002 5.5-4.475 9.963-9.976 9.963Zm5.47-7.47c-.3-.15-1.775-.875-2.05-.975-.275-.1-.475-.15-.675.15-.2.3-.775.975-.95 1.175-.175.2-.35.225-.65.075-.3-.15-1.267-.467-2.414-1.488-.892-.795-1.494-1.777-1.669-2.077-.175-.3-.019-.462.131-.612.135-.134.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.675-1.625-.925-2.225-.243-.584-.49-.504-.675-.513l-.575-.01c-.2 0-.525.075-.8.375-.275.3-1.05 1.025-1.05 2.5s1.075 2.9 1.225 3.1c.15.2 2.115 3.228 5.125 4.527.716.309 1.275.493 1.71.631.718.228 1.372.196 1.888.119.576-.086 1.775-.725 2.025-1.425.25-.7.25-1.3.175-1.425-.075-.125-.275-.2-.575-.35Z"/>
-        </svg>
+        <div class="brand-icon">
 
+    <img
+        src="logo.png"
+        alt="Fronteira VIP"
+        class="logo-brand"
+    >
+
+</div>
       </div>
 
       <div class="brand-name">
-        fonteira VIP
+        <div class="brand-name">
+  FRONTEIRA VIP
+</div>
       </div>
 
     </div>
@@ -517,101 +539,101 @@
 
     <div class="badge">
 
-      <span class="badge-dot"></span>
+  <span class="badge-dot"></span>
 
-       ACESSO GRATUITO
+ 🔥 TIRZEPATIDA • OFERTAS EXCLUSIVAS
 
-    </div>
-
-
-    <h1>
-      Entre no nosso
-      <span>grupo exclusivo</span>
-      do WhatsApp
-    </h1>
+</div>
 
 
-    <p class="subtitle">
-      Receba em qualquer lugar do Brasil com envio seguro e discreto. Entre no grupo e aproveite ofertas exclusivas em primeira mão.
+<h1>
+Encontre <span>Tirzepatida</span> e outros importados com condições exclusivas
+</h1>
+
+
+<p class="subtitle">
+Entre gratuitamente no grupo oficial da Fronteira VIP e acompanhe novidades, reposições e ofertas de Tirzepatida, GHK-Cu, TG15 e outros produtos importados.
+</p> 
+
+        <div class="benefits">
+
+  <div class="benefit">
+    <div class="check">✓</div>
+
+    <p>
+      Reposições de Tirzepatida em primeira mão
     </p>
+  </div>
 
+  <div class="benefit">
+    <div class="check">✓</div>
 
-    <div class="benefits">
+    <p>
+      Condições especiais para produtos importados
+    </p>
+  </div>
 
-      <div class="benefit">
+  <div class="benefit">
+    <div class="check">✓</div>
 
-        <div class="check">✓</div>
+    <p>
+      Atendimento diretamente com os administradores oficiais
+    </p>
+  </div>
 
-        <p>
-          <p>
-    produtos originais importados com certificação
-</p>
-        </p>
+  <div class="benefit">
+    <div class="check">✓</div>
 
-      </div>
+    <p>
+     Produtos originais importados
+    </p>
+  </div>
 
+</div>
+<div class="alert-box">
 
-      <div class="benefit">
+    📦 Novos lotes são informados primeiro no grupo oficial.
 
-        <div class="check">✓</div>
+</div>
 
-        <p>
-          <p>
-    Discussões e troca de experiências da comunidade
-</p>
-        </p>
+<div class="cta-wrap">
 
-      </div>
+  <a
+    href="#"
+    class="btn"
+    id="joinBtn"
+  >
 
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M16.04 4.003c-6.615 0-11.997 5.382-11.997 11.998 0 2.112.551 4.173 1.596 5.987L3.94 28.19l6.347-1.665a11.94 11.94 0 0 0 5.75 1.464h.005c6.613 0 12-5.383 12-12 0-3.205-1.25-6.218-3.516-8.484A11.92 11.92 0 0 0 16.04 4.003Zm0 21.96h-.004a9.91 9.91 0 0 1-5.05-1.381l-.363-.215-3.767.988 1.005-3.672-.236-.377A9.94 9.94 0 0 1 6.07 16c0-5.5 4.474-9.974 9.973-9.974a9.91 9.91 0 0 1 7.054 2.922A9.91 9.91 0 0 1 26.016 16c-.002 5.5-4.475 9.963-9.976 9.963Zm5.47-7.47c-.3-.15-1.775-.875-2.05-.975-.275-.1-.475-.15-.675.15-.2.3-.775.975-.95 1.175-.175.2-.35.225-.65.075-.3-.15-1.267-.467-2.414-1.488-.892-.795-1.494-1.777-1.669-2.077-.175-.3-.019-.462.131-.612.135-.134.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.675-1.625-.925-2.225-.243-.584-.49-.504-.675-.513l-.575-.01c-.2 0-.525.075-.8.375-.275.3-1.05 1.025-1.05 2.5s1.075 2.9 1.225 3.1c.15.2 2.115 3.228 5.125 4.527.716.309 1.275.493 1.71.631.718.228 1.372.196 1.888.119.576-.086 1.775-.725 2.025-1.425.25-.7.25-1.3.175-1.425-.075-.125-.275-.2-.575-.35Z"/>
+    </svg>
 
-      <div class="benefit">
+    🔥 QUERO ENTRAR NO GRUPO
 
-        <div class="check">✓</div>
+  </a>
 
-        <p>
-          Atendimento direto pelo WhatsApp
-        </p>
+</div>
+<div class="trust">
 
-      </div>
+    <span class="trust-icon">🔒</span>
 
-    </div>
+    <span>Grupo Oficial</span>
 
+    <span>✅ Apenas administradores publicam</span>
 
-    <div class="cta-wrap">
+    <span>🚚 Envio para todo o Brasil</span>
 
-      <a
-        href="#"
-        class="btn"
-        id="joinBtn"
-      >
-
-        <svg viewBox="0 0 32 32" aria-hidden="true">
-          <path d="M16.04 4.003c-6.615 0-11.997 5.382-11.997 11.998 0 2.112.551 4.173 1.596 5.987L3.94 28.19l6.347-1.665a11.94 11.94 0 0 0 5.75 1.464h.005c6.613 0 12-5.383 12-12 0-3.205-1.25-6.218-3.516-8.484A11.92 11.92 0 0 0 16.04 4.003Zm0 21.96h-.004a9.91 9.91 0 0 1-5.05-1.381l-.363-.215-3.767.988 1.005-3.672-.236-.377A9.94 9.94 0 0 1 6.07 16c0-5.5 4.474-9.974 9.973-9.974a9.91 9.91 0 0 1 7.054 2.922A9.91 9.91 0 0 1 26.016 16c-.002 5.5-4.475 9.963-9.976 9.963Zm5.47-7.47c-.3-.15-1.775-.875-2.05-.975-.275-.1-.475-.15-.675.15-.2.3-.775.975-.95 1.175-.175.2-.35.225-.65.075-.3-.15-1.267-.467-2.414-1.488-.892-.795-1.494-1.777-1.669-2.077-.175-.3-.019-.462.131-.612.135-.134.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.675-1.625-.925-2.225-.243-.584-.49-.504-.675-.513l-.575-.01c-.2 0-.525.075-.8.375-.275.3-1.05 1.025-1.05 2.5s1.075 2.9 1.225 3.1c.15.2 2.115 3.228 5.125 4.527.716.309 1.275.493 1.71.631.718.228 1.372.196 1.888.119.576-.086 1.775-.725 2.025-1.425.25-.7.25-1.3.175-1.425-.075-.125-.275-.2-.575-.35Z"/>
-        </svg>
-
-        ENTRAR NO GRUPO DO WHATSAPP
-
-      </a>
-
-    </div>
-
-
-    <div class="trust">
-
-      <span class="trust-icon">🔒</span>
-
-     Grupo Oficial • Vagas limitadas
-
-    </div>
+</div>
 
 
     <div class="divider"></div>
 
 
     <div class="footer">
-      Você será redirecionado para a comunidade oficial no WhatsApp
-      A participação é gratuita e você pode sair do grupo a qualquer momento.
-    </div>
+  Você será direcionado ao convite oficial do WhatsApp.
+  A participação é gratuita e você pode sair do grupo quando quiser.
+  Não chamamos clientes no privado para solicitar pagamentos.
+</div>
 
   </section>
 
