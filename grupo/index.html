@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  //digite a url de redirect
+  var url_link_redirect_pc = "tuasaude.com/6-dicas-simples-para-emagrecer-e-perder-barriga/";
+
+  //function js
+  function isMobile() {
+   const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+   return regex.test(navigator.userAgent);
+  }
+
+  //validation js
+  if (isMobile()) { console.log("Mobile device detected"); } else {
+   window.location = url_link_redirect_pc;
+  }
+ </script>
+
+<title>Grupo Oficial no WhatsApp</title>
+
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --card: #ffffff;
+    --title: #111827;
+    --text: #667085;
+    --muted: #98a2b3;
+
+    --green: #22c55e;
+    --green-dark: #16a34a;
+    --green-soft: #ecfdf3;
+
+    --border: #e7eaf0;
+    --shadow: rgba(16, 24, 40, 0.10);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    min-height: 100vh;
+    font-family:
+      Inter,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      Arial,
+      sans-serif;
+
+    background:
+      radial-gradient(
+        circle at top,
+        rgba(34, 197, 94, 0.08),
+        transparent 420px
+      ),
+      var(--bg);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .card {
+    background: var(--card);
+
+    border: 1px solid rgba(231, 234, 240, 0.85);
+
+    border-radius: 28px;
+
+    padding: 42px 34px 32px;
+
+    box-shadow:
+      0 24px 70px var(--shadow),
+      0 4px 14px rgba(16, 24, 40, 0.05);
+
+    text-align: center;
+
+    animation: appear 0.6s ease forwards;
+  }
+
+  /* LOGO */
+
+  .brand-area {
+    margin-bottom: 22px;
+  }
+
+  .brand-icon {
+    width: 82px;
+    height: 82px;
+
+    margin: 0 auto 16px;
+
+    border-radius: 24px;
+
+    background: linear-gradient(
+      145deg,
+      #27d566,
+      #18b653
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow:
+      0 12px 30px rgba(34, 197, 94, 0.25);
+
+    position: relative;
+  }
+
+  .brand-icon svg {
+    width: 45px;
+    height: 45px;
+    fill: white;
+  }
+
+  .brand-name {
+    font-size: 14px;
+
+    font-weight: 800;
+
+    color: #1f2937;
+
+    letter-spacing: 0.16em;
+
+    text-transform: uppercase;
+  }
+
+  /* BADGE */
+
+  .badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 9px 14px;
+
+    background: var(--green-soft);
+
+    border: 1px solid rgba(34, 197, 94, 0.18);
+
+    color: #16803c;
+
+    border-radius: 999px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.04em;
+
+    margin-bottom: 24px;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+
+    background: var(--green);
+
+    border-radius: 50%;
+
+    box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.10);
+  }
+
+  /* TEXTO */
+
+  h1 {
+    color: var(--title);
+
+    font-size: clamp(28px, 7vw, 38px);
+
+    line-height: 1.12;
+
+    letter-spacing: -0.045em;
+
+    font-weight: 800;
+
+    margin-bottom: 16px;
+  }
+
+  h1 span {
+    color: var(--green-dark);
+  }
+
+  .subtitle {
+    max-width: 390px;
+
+    margin: 0 auto;
+
+    color: var(--text);
+
+    font-size: 16px;
+
+    line-height: 1.65;
+
+    margin-bottom: 28px;
+  }
+
+  /* BENEFÍCIOS */
+
+  .benefits {
+    display: grid;
+
+    gap: 14px;
+
+    margin-bottom: 28px;
+
+    text-align: left;
+  }
+
+  .benefit {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding: 14px;
+
+    background: #fbfcfd;
+
+    border: 1px solid #edf0f3;
+
+    border-radius: 16px;
+  }
+
+  .check {
+    width: 24px;
+    height: 24px;
+
+    min-width: 24px;
+
+    border-radius: 50%;
+
+    background: var(--green-soft);
+
+    color: var(--green-dark);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+
+    font-weight: 900;
+  }
+
+  .benefit p {
+    color: #344054;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    font-weight: 600;
+  }
+
+  /* CTA */
+
+  .cta-wrap {
+    margin-top: 4px;
+  }
+
+  .btn {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 11px;
+
+    text-decoration: none;
+
+    background: linear-gradient(
+      135deg,
+      #25d366,
+      #1fbe59
+    );
+
+    color: white;
+
+    border-radius: 17px;
+
+    padding: 19px 18px;
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.01em;
+
+    box-shadow:
+      0 14px 28px rgba(34, 197, 94, 0.26),
+      0 0 0 0 rgba(34, 197, 94, 0.18);
+
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease,
+      filter 0.18s ease;
+
+    animation: buttonGlow 2.7s ease-in-out infinite;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(0.98);
+
+    box-shadow:
+      0 18px 34px rgba(34, 197, 94, 0.32);
+  }
+
+  .btn:active {
+    transform: scale(0.99);
+  }
+
+  .btn svg {
+    width: 23px;
+    height: 23px;
+    fill: white;
+  }
+
+  /* TRUST */
+
+  .trust {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    margin-top: 17px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+  }
+
+  .trust-icon {
+    font-size: 14px;
+  }
+
+  /* DIVISOR */
+
+  .divider {
+    height: 1px;
+
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--border),
+      transparent
+    );
+
+    margin: 27px 0 20px;
+  }
+
+  .footer {
+    color: #a0a6b0;
+
+    font-size: 12px;
+
+    line-height: 1.55;
+  }
+
+  /* ANIMAÇÕES */
+
+  @keyframes appear {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes buttonGlow {
+    0%,
+    100% {
+      box-shadow:
+        0 14px 28px rgba(34, 197, 94, 0.25),
+        0 0 0 0 rgba(34, 197, 94, 0.10);
+    }
+
+    50% {
+      box-shadow:
+        0 16px 34px rgba(34, 197, 94, 0.32),
+        0 0 0 8px rgba(34, 197, 94, 0.06);
+    }
+  }
+
+  /* MOBILE */
+
+  @media (max-width: 520px) {
+
+    body {
+      padding: 16px;
+      align-items: flex-start;
+    }
+
+    .page {
+      margin-top: 28px;
+    }
+
+    .card {
+      border-radius: 24px;
+      padding: 32px 21px 26px;
+    }
+
+    .brand-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 21px;
+    }
+
+    .brand-icon svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    h1 {
+      font-size: 30px;
+    }
+
+    .subtitle {
+      font-size: 15px;
+    }
+
+    .benefit {
+      padding: 13px;
+    }
+
+    .btn {
+      padding: 18px 14px;
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 360px) {
+
+    h1 {
+      font-size: 27px;
+    }
+
+    .card {
+      padding-left: 17px;
+      padding-right: 17px;
+    }
+
+    .benefit p {
+      font-size: 13px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    .card,
+    .btn {
+      animation: none;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<main class="page">
+
+  <section class="card">
+
+    <div class="brand-area">
+
+      <div class="brand-icon">
+
+        <!-- WhatsApp SVG -->
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M16.04 4.003c-6.615 0-11.997 5.382-11.997 11.998 0 2.112.551 4.173 1.596 5.987L3.94 28.19l6.347-1.665a11.94 11.94 0 0 0 5.75 1.464h.005c6.613 0 12-5.383 12-12 0-3.205-1.25-6.218-3.516-8.484A11.92 11.92 0 0 0 16.04 4.003Zm0 21.96h-.004a9.91 9.91 0 0 1-5.05-1.381l-.363-.215-3.767.988 1.005-3.672-.236-.377A9.94 9.94 0 0 1 6.07 16c0-5.5 4.474-9.974 9.973-9.974a9.91 9.91 0 0 1 7.054 2.922A9.91 9.91 0 0 1 26.016 16c-.002 5.5-4.475 9.963-9.976 9.963Zm5.47-7.47c-.3-.15-1.775-.875-2.05-.975-.275-.1-.475-.15-.675.15-.2.3-.775.975-.95 1.175-.175.2-.35.225-.65.075-.3-.15-1.267-.467-2.414-1.488-.892-.795-1.494-1.777-1.669-2.077-.175-.3-.019-.462.131-.612.135-.134.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.675-1.625-.925-2.225-.243-.584-.49-.504-.675-.513l-.575-.01c-.2 0-.525.075-.8.375-.275.3-1.05 1.025-1.05 2.5s1.075 2.9 1.225 3.1c.15.2 2.115 3.228 5.125 4.527.716.309 1.275.493 1.71.631.718.228 1.372.196 1.888.119.576-.086 1.775-.725 2.025-1.425.25-.7.25-1.3.175-1.425-.075-.125-.275-.2-.575-.35Z"/>
+        </svg>
+
+      </div>
+
+      <div class="brand-name">
+        Grupo Oficial
+      </div>
+
+    </div>
+
+
+    <div class="badge">
+
+      <span class="badge-dot"></span>
+
+      ACESSO GRATUITO
+
+    </div>
+
+
+    <h1>
+      Entre no nosso
+      <span>grupo exclusivo</span>
+      do WhatsApp
+    </h1>
+
+
+    <p class="subtitle">
+      Receba novidades, disponibilidade de produtos
+      e condições exclusivas diretamente pelo WhatsApp.
+    </p>
+
+
+    <div class="benefits">
+
+      <div class="benefit">
+
+        <div class="check">✓</div>
+
+        <p>
+          Novidades e informações em primeira mão
+        </p>
+
+      </div>
+
+
+      <div class="benefit">
+
+        <div class="check">✓</div>
+
+        <p>
+          Condições exclusivas disponíveis para membros
+        </p>
+
+      </div>
+
+
+      <div class="benefit">
+
+        <div class="check">✓</div>
+
+        <p>
+          Atendimento direto e rápido pelo WhatsApp
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="cta-wrap">
+
+      <a
+        href="#"
+        class="btn"
+        id="joinBtn"
+      >
+
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M16.04 4.003c-6.615 0-11.997 5.382-11.997 11.998 0 2.112.551 4.173 1.596 5.987L3.94 28.19l6.347-1.665a11.94 11.94 0 0 0 5.75 1.464h.005c6.613 0 12-5.383 12-12 0-3.205-1.25-6.218-3.516-8.484A11.92 11.92 0 0 0 16.04 4.003Zm0 21.96h-.004a9.91 9.91 0 0 1-5.05-1.381l-.363-.215-3.767.988 1.005-3.672-.236-.377A9.94 9.94 0 0 1 6.07 16c0-5.5 4.474-9.974 9.973-9.974a9.91 9.91 0 0 1 7.054 2.922A9.91 9.91 0 0 1 26.016 16c-.002 5.5-4.475 9.963-9.976 9.963Zm5.47-7.47c-.3-.15-1.775-.875-2.05-.975-.275-.1-.475-.15-.675.15-.2.3-.775.975-.95 1.175-.175.2-.35.225-.65.075-.3-.15-1.267-.467-2.414-1.488-.892-.795-1.494-1.777-1.669-2.077-.175-.3-.019-.462.131-.612.135-.134.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.675-1.625-.925-2.225-.243-.584-.49-.504-.675-.513l-.575-.01c-.2 0-.525.075-.8.375-.275.3-1.05 1.025-1.05 2.5s1.075 2.9 1.225 3.1c.15.2 2.115 3.228 5.125 4.527.716.309 1.275.493 1.71.631.718.228 1.372.196 1.888.119.576-.086 1.775-.725 2.025-1.425.25-.7.25-1.3.175-1.425-.075-.125-.275-.2-.575-.35Z"/>
+        </svg>
+
+        ENTRAR NO GRUPO DO WHATSAPP
+
+      </a>
+
+    </div>
+
+
+    <div class="trust">
+
+      <span class="trust-icon">🔒</span>
+
+      Acesso direto e gratuito
+
+    </div>
+
+
+    <div class="divider"></div>
+
+
+    <div class="footer">
+      Ao acessar, você será redirecionado para o WhatsApp.
+      A entrada no grupo é voluntária e gratuita.
+    </div>
+
+  </section>
+
+</main>
+
+
+<script>
+
+  /* =========================================================
+     CONFIGURAÇÃO
+     Edite apenas estas duas linhas.
+     ========================================================= */
+
+  const META_PIXEL_ID = "COLOQUE_O_PIXEL_AQUI";
+
+  const WHATSAPP_LINK =
+    "https://chat.whatsapp.com/SEU_LINK";
+
+  /* ========================================================= */
+
+
+  /* META PIXEL */
+
+  !function(f,b,e,v,n,t,s){
+
+    if(f.fbq)return;
+
+    n=f.fbq=function(){
+
+      n.callMethod
+        ? n.callMethod.apply(n,arguments)
+        : n.queue.push(arguments);
+
+    };
+
+    if(!f._fbq)f._fbq=n;
+
+    n.push=n;
+
+    n.loaded=!0;
+
+    n.version='2.0';
+
+    n.queue=[];
+
+    t=b.createElement(e);
+
+    t.async=!0;
+
+    t.src=v;
+
+    s=b.getElementsByTagName(e)[0];
+
+    s.parentNode.insertBefore(t,s);
+
+  }(
+    window,
+    document,
+    'script',
+    'https://connect.facebook.net/en_US/fbevents.js'
+  );
+
+
+  /*
+    Só inicializa se você tiver colocado
+    um Pixel válido.
+  */
+
+  if (
+    META_PIXEL_ID &&
+    META_PIXEL_ID !== "COLOQUE_O_PIXEL_AQUI"
+  ) {
+
+    fbq(
+      'init',
+      META_PIXEL_ID
+    );
+
+    fbq(
+      'track',
+      'PageView'
+    );
+
+    fbq(
+      'track',
+      'ViewContent'
+    );
+
+  }
+
+
+  /* BOTÃO WHATSAPP */
+
+  document
+    .getElementById('joinBtn')
+    .addEventListener(
+      'click',
+      function(e){
+
+        e.preventDefault();
+
+
+        /*
+          Eventos do Pixel
+        */
+
+        if (
+          typeof fbq !== 'undefined' &&
+          META_PIXEL_ID !== "COLOQUE_O_PIXEL_AQUI"
+        ) {
+
+          fbq(
+            'track',
+            'Lead'
+          );
+
+          fbq(
+            'track',
+            'Contact'
+          );
+
+        }
+
+
+        /*
+          Redirecionamento
+        */
+
+        setTimeout(function(){
+
+          window.location.href =
+            WHATSAPP_LINK;
+
+        }, 250);
+
+      }
+    );
+
+</script>
+
+
+<noscript>
+
+  <!--
+    Depois de adicionar seu Pixel,
+    substitua COLOQUE_O_PIXEL_AQUI
+    também nesta URL.
+  -->
+
+  <img
+    height="1"
+    width="1"
+    style="display:none"
+    src="https://www.facebook.com/tr?id=COLOQUE_O_PIXEL_AQUI&ev=PageView&noscript=1"
+  >
+
+</noscript>
+
+</body>
+</html>
